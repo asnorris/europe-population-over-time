@@ -1,0 +1,25 @@
+---
+title: "Europe 1952-2007"
+author: "Alexandra Norris"
+date: "11/8/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(gapminder)
+library(ggplot2)
+library(gganimate)
+
+```
+
+```{r create graphic}
+
+gapminder %>%
+  filter(continent == "Europe") %>%
+  ggplot(aes(x = gdpPercap, y = lifeExp, size = pop, color = country)) + geom_point() + labs(color = "Color", size = "Population", title = "Europe from 1952 to 2007. Year: {time= frame_time}", x = "GDP per capita", y = "Life Expectancy") + transition_time(year) 
+
+```
+
